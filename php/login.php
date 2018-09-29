@@ -3,19 +3,15 @@
     $inp = json_decode(file_get_contents("php://input"));
     $username = $inp -> {"username"};
     $password = $inp -> {"password"};
-    $sqlSelect = "SELECT password FROM login_reg WHERE username='$username'";
+    $sqlSelect = "SELECT * FROM login_reg WHERE username='$username' AND password='$password'";
     $coon = new mysqli("localhost","root","","login_user","3306");
     $result = $coon -> query($sqlSelect);
     $row = $result -> fetch_assoc();
     $res = array();
     if($row){
-        if($row["password"]!==$password){
-            $res["type"] = "pass";
-        }else{
-            $res["type"] = "yes";
-        }
+        $res["type"] = "yes";
     }else{
-        $res["type"] = "user";
+        $res["type"] = "no";
     }
     echo json_encode($res);
 ?>

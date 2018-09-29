@@ -26,7 +26,7 @@ function sendAjax(url,options){
         if(xhr.readyState === 4){
             if(xhr.status === 200){
                 if(typeof _default.success === "function"){
-                    var data = JSON.parse(xhr.response);
+                    // var data = JSON.parse(xhr.response);
                     _default.success(xhr.response);
                 }
             }else{
